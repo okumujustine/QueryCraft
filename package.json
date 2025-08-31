@@ -1,88 +1,21 @@
 {
-  "name": "final_query_client",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "main": "dist-electron/main.js",
+  "name": "querycraft",
+  "version": "1.0.0",
+  "main": "index.js",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "build:electron": "tsc -p electron/tsconfig.json && electron-builder",
-    "electron": "wait-on tcp:5173 && electron .",
-    "electron:dev": "concurrently \"npm run dev\" \"npm run electron\"",
-    "bundle-python": "scripts/bundle-python.sh",
-    "bundle-python:win": "scripts/bundle-python.bat",
-    "electron:build": "npm run build && npm run bundle-python && npm run build:electron",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "dev:ui": "npm run dev --workspace apps/ui",
+    "dev:backend": "npm run start:dev --workspace apps/backend",
+    "dev:electron": "npm run electron:dev --workspace electron",
+
+    "dev:all": "concurrently \"npm run dev:backend\" \"wait-on tcp:5137 && npm run dev:ui\" \"wait-on tcp:5137 && npm run dev:electron\""
+
   },
-  "dependencies": {
-    "@radix-ui/react-accordion": "^1.2.12",
-    "@radix-ui/react-dialog": "^1.1.15",
-    "@radix-ui/react-dropdown-menu": "^2.1.16",
-    "@radix-ui/react-label": "^2.1.7",
-    "@radix-ui/react-select": "^2.2.6",
-    "@radix-ui/react-switch": "^1.2.6",
-    "@radix-ui/react-tooltip": "^1.2.8",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "date-fns": "^4.1.0",
-    "lucide-react": "^0.539.0",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-router-dom": "^7.8.0",
-    "tailwind-merge": "^3.3.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.33.0",
-    "@tailwindcss/vite": "^4.1.12",
-    "@types/node": "^24.2.1",
-    "@types/react": "^19.1.10",
-    "@types/react-dom": "^19.1.7",
-    "@vitejs/plugin-react": "^5.0.0",
-    "autoprefixer": "^10.4.21",
-    "concurrently": "^9.1.0",
-    "electron": "^37.3.1",
-    "electron-builder": "^25.1.0",
-    "eslint": "^9.33.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.20",
-    "globals": "^16.3.0",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.12",
-    "typescript": "~5.8.3",
-    "typescript-eslint": "^8.39.1",
-    "vite": "^7.1.2",
-    "wait-on": "^8.0.1"
-  },
-  "build": {
-    "appId": "com.querycraft.app",
-    "productName": "QueryCraft",
-    "directories": {
-      "output": "release"
-    },
-    "files": [
-      "dist/**/*",
-      "dist-electron/**/*",
-      "backend/**/*",
-      "node_modules/**/*"
-    ],
-    "extraResources": [
-      {
-        "from": "backend",
-        "to": "backend",
-        "filter": ["**/*"]
-      }
-    ],
-    "mac": {
-      "category": "public.app-category.developer-tools",
-      "target": "dmg"
-    },
-    "win": {
-      "target": "nsis"
-    },
-    "linux": {
-      "target": "AppImage"
-    }
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
