@@ -2,9 +2,12 @@
   "name": "electron",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/main.js",
+  "build:electron": "tsc -p electron/tsconfig.json && electron-builder",
   "scripts": {
-    "electron:dev": "wait-on tcp:5137 electron ."
+    "build": "tsc -p tsconfig.json",
+    "electron:dev": "wait-on tcp:6295 && electron .",
+    "electron:build": "npm run build && electron-builder"
   },
   "keywords": [],
   "author": "",

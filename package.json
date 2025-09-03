@@ -11,7 +11,7 @@
     "dev:backend": "npm run start:dev --workspace apps/backend",
     "dev:electron": "npm run electron:dev --workspace electron",
 
-    "dev:all": "concurrently \"npm run dev:backend\" \"wait-on tcp:5137 && npm run dev:ui\" \"wait-on tcp:5137 && npm run dev:electron\""
+    "dev:all": "concurrently \"npm run dev:backend\" \"wait-on tcp:3000 && npm run dev:ui\" \"wait-on tcp:6295 && npm run dev:electron\""
 
   },
   "keywords": [],

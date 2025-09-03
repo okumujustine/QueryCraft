@@ -8,8 +8,8 @@
     "strict": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "../dist-electron",
-    "rootDir": ".",
+    "outDir": "dist",
+    "rootDir": "src",
     "resolveJsonModule": true,
     "declaration": false,
     "removeComments": true,
@@ -22,13 +22,9 @@
     "noImplicitOverride": true,
     "exactOptionalPropertyTypes": true
   },
-  "include": [
-    "main.ts",
-    "preload.ts"
-  ],
+  "include": ["src"],
   "exclude": [
     "node_modules",
-    "../dist",
-    "../dist-electron"
+    "dist"
   ]
 }

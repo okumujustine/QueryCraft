@@ -5,12 +5,8 @@
   "type": "module",
   "main": "dist-electron/main.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 6295 --strictPort --host",
     "build": "tsc -b && vite build",
-    "build:electron": "tsc -p electron/tsconfig.json && electron-builder",
-    "electron": "wait-on tcp:5173 && electron .",
-    "electron:dev": "concurrently \"npm run dev\" \"npm run electron\"",
-    "electron:build": "npm run build && npm run bundle-python && npm run build:electron",
     "lint": "eslint .",
     "preview": "vite preview"
   },
