@@ -1,7 +1,7 @@
 
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
+import Editor, { DiffEditor, useMonaco, loader } from '@monaco-editor/react';
 import { DatabaseConnection, QueryHistory, SavedQuery } from "@/entities/all";
 import { AlertCircle, Database, Loader2, PanelLeft, Play, Save } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -204,12 +204,20 @@ export default function QueryEditor() {
             </div>
           </div>
           <div className="flex-1 p-4 min-h-0 overflow-hidden">
-            <Textarea 
-              value={query} 
-              onChange={(e) => setQuery(e.target.value)} 
-              placeholder="-- Write your SQL query here..." 
-              className="font-mono text-sm w-full h-full resize-none border-0 focus-visible:ring-0 p-2" 
-              disabled={isExecuting} 
+            <Editor 
+              height="100%" 
+              defaultLanguage="sql" 
+              defaultValue="-- Write your SQL query here..."
+              value={query}
+              onChange={(value) => setQuery(value || '')}
+              options={{
+                minimap: { enabled: false },
+                scrollBeyondLastLine: false,
+                fontSize: 14,
+                fontFamily: 'JetBrains Mono, Monaco, Consolas, monospace',
+                lineNumbers: 'on',
+                automaticLayout: true
+              }}
             />
           </div>
           <div 
